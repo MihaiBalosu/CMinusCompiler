@@ -802,7 +802,7 @@ YY_RULE_SETUP
 case 8:
 YY_RULE_SETUP
 #line 25 "CMinus.lex"
-{ count(); ID); }
+{ count(); return (ID); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
