@@ -1,9 +1,10 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(467,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (C-Minus.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  cminus.tab.c
   lex.yy.c
-C-Minus.lex(16,10): warning C4013: 'comment' undefined; assuming extern returning int
-C-Minus.lex(25,29): warning C4013: 'check_type' undefined; assuming extern returning int
+CMinus.lex(16,10): warning C4013: 'comment' undefined; assuming extern returning int
 lex.yy.c(1514,46): warning C4013: 'isatty' undefined; assuming extern returning int
   CMinus.c
   Generating Code...
-H:\TD1\C-Minus\C-Minus\C-Minus.lex(78): warning C4716: 'comment': must return a value
-  C-Minus.vcxproj -> H:\TD1\C-Minus\Debug\CMinus.exe
+H:\TD1\C-Minus_Git\C-Minus\C-Minus\CMinus.lex(78): warning C4716: 'comment': must return a value
+cminus.tab.obj : error LNK2019: unresolved external symbol _yyerror referenced in function _yyparse
+H:\TD1\C-Minus_Git\C-Minus\Debug\CMinus.exe : fatal error LNK1120: 1 unresolved externals

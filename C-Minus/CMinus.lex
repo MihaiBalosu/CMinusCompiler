@@ -6,7 +6,7 @@ IS			(u|U|l|L)*
 
 %{
 #include <stdio.h>
-#include "symbols.h"
+#include "cminus.tab.h"
 
 void count();
 void badChars();

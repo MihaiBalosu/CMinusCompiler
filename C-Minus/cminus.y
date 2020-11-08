@@ -1,5 +1,8 @@
 %{ 
   #include <stdio.h>
+
+  int yyerror(char * c);
+  extern int yylex(void);
 %}
 
 %token END 
@@ -55,35 +58,35 @@ declaration  : var_declaration
              ;
 
 var_declaration : type_specifier ID 
-                | type_specifier ID '[' NUM ']'
+                | type_specifier ID LBRACKET NUM RBRACKET
                 ;
 
 type_specifier : INT	  
                | VOID  
 	           ;
 
-fun_declaration : type_specifier ID '('params ')' compound_stmt  			              
+fun_declaration : type_specifier ID LPAREN params RPAREN compound_stmt  			              
                 ;
 
 params : param_list 
 		| VOID ;
 
-param_list : param_list ',' param 
+param_list : param_list COMMA param 
            | param 		            
 	        ;
 
 param : type_specifier ID                                               
-      | type_specifier ID '[' ']'
+      | type_specifier ID LBRACKET RBRACKET
       ;
 
-compound_stmt : '{' local_declarations statement_list '}'  
+compound_stmt : LBRACE local_declarations statement_list RBRACE 
               ;
 
 local_declarations : local_declarations var_declaration
-                   | /* empty */ ;
+                   | ;
 
 statement_list : statement_list statement
-               | /* empty */ ;
+               | ;
 
 statement : expression_stmt
           | compound_stmt
@@ -92,30 +95,30 @@ statement : expression_stmt
           | return_stmt 
 		  ;
 
-expression_stmt : expression ';'
-                | ';' 
+expression_stmt : expression END_OF_INSTRUCTION
+                | END_OF_INSTRUCTION 
 				;
 
-selection_stmt : IF  '(' expression ')'  statement        
-               | IF  '(' expression ')'  statement ELSE	  
+selection_stmt : IF  LPAREN expression RPAREN  statement        
+               | IF  LPAREN expression RPAREN  statement ELSE	  
 				statement					 	          
                ;
 
-iteration_stmt : WHILE '(' expression ')' 
+iteration_stmt : WHILE LPAREN expression RPAREN
                  statement          
                  ;
 				
 
-return_stmt : RETURN ';'              
-            | RETURN expression ';'   
+return_stmt : RETURN END_OF_INSTRUCTION             
+            | RETURN expression END_OF_INSTRUCTION   
             ;
 
-expression : var '=' expression     
+expression : var ASSIGN expression     
            | simple_expression      
            ;
 
 var : ID                    
-    | ID '[' expression ']' 
+    | ID LBRACKET expression RBRACKET 
     ;
 
 simple_expression : additive_expression relop additive_expression  
@@ -146,20 +149,20 @@ mulop : MULTIPLY
       | DIVIDE
       ;
 
-factor : '(' expression ')' 
+factor : LPAREN expression RPAREN 
        | var                
        | call               
        | NUM                
        ;
 
-call : ID '(' args ')'  
+call : ID LPAREN args RPAREN 
      ;
 
 args : arg_list 
-	 | /* empty */ 
+	 | 
 	 ;
 
-arg_list : arg_list ',' expression 
+arg_list : arg_list END_OF_INSTRUCTION expression 
          | expression              
          ;
 

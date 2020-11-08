@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\lex.yy.c">
+    <ClCompile Include="CMinus.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CMinus.c">
+    <ClCompile Include="..\cminus.tab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lex.yy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\symbols.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cminus.tab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,6 +38,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="..\CMinus.lex">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\cminus.y">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
